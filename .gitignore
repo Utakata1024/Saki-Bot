@@ -1,0 +1,10 @@
+# 環境変数ファイルを絶対に除外
+.env
+
+# Goが生成するバイナリファイル
+my-discord-bot
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
