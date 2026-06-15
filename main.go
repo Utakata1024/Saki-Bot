@@ -63,17 +63,17 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 	}
 
 	// コマンドの判定
-	if strings.HasPrefix(m.Content, "!help") {
+	if strings.HasPrefix(m.Content, "!!help") {
 		// 【機能1】コマンドリストの提示
 		helpMessage := "🤖 **利用可能なコマンドリスト** 🤖\n" +
-			"`!help` - このコマンドリストを表示します。\n" +
-			"`!time` - 現在の日本時間を教えます。\n" +
-			"`!remind [分] [内容]` - 指定した分後にリマインドします（例: `!remind 3 お湯を入れた`）"
+			"`!!help` - このコマンドリストを表示します。\n" +
+			"`!!time` - 現在の日本時間を教えます。\n" +
+			"`!!remind [分] [内容]` - 指定した分後にリマインドします（例: `!!remind 3 お湯を入れた`）"
 		s.ChannelMessageSend(m.ChannelID, helpMessage)
 		return
 	}
 
-	if strings.HasPrefix(m.Content, "!time") {
+	if strings.HasPrefix(m.Content, "!!time") {
 		// 【機能2】時間を教えてくれる機能
 		// 日本時間を取得
 		loc, _ := time.LoadLocation("Asia/Tokyo")
@@ -83,11 +83,11 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 		return
 	}
 
-	if strings.HasPrefix(m.Content, "!remind ") {
+	if strings.HasPrefix(m.Content, "!!remind ") {
 		// 【機能3】リマインド機能
 		parts := strings.SplitN(m.Content, " ", 3)
 		if len(parts) < 3 {
-			s.ChannelMessageSend(m.ChannelID, "⚠️ 使い方が間違っています。\n例: `!remind 5 筋トレをする`")
+			s.ChannelMessageSend(m.ChannelID, "⚠️ 使い方が間違っています。\n例: `!!remind 5 筋トレをする`")
 			return
 		}
 
